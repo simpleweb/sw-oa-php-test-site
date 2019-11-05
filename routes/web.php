@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'DatasetController@show');
+
+Route::get('/feed/session-series/', 'FeedSessionSeriesController@show');
