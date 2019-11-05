@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa503b104f700e4337a4bf209a56bc8a",
+    "content-hash": "e64dad62818d2cf2bbeb3db65c6887b5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -843,6 +843,52 @@
             "time": "2019-08-30T09:56:44+00:00"
         },
         {
+            "name": "mustache/mustache",
+            "version": "v2.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/mustache.php.git",
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.11",
+                "phpunit/phpunit": "~3.7|~4.0|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache implementation in PHP.",
+            "homepage": "https://github.com/bobthecow/mustache.php",
+            "keywords": [
+                "mustache",
+                "templating"
+            ],
+            "time": "2017-07-11T12:54:05+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "2.26.0",
             "source": {
@@ -960,6 +1006,70 @@
                 "php"
             ],
             "time": "2019-10-25T18:33:07+00:00"
+        },
+        {
+            "name": "openactive/dataset-site",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/openactive/dataset-site-template-php.git",
+                "reference": "5c89133f24615564bf31aea4158986c9d795f9da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/5c89133f24615564bf31aea4158986c9d795f9da",
+                "reference": "5c89133f24615564bf31aea4158986c9d795f9da",
+                "shasum": ""
+            },
+            "require": {
+                "mustache/mustache": "^2.12",
+                "openactive/models": "dev-master"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "OpenActive\\DatasetSiteTemplate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2019-10-30T10:38:48+00:00"
+        },
+        {
+            "name": "openactive/models",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/openactive/models-php.git",
+                "reference": "6ab0cd76f1fc58c44c4344feda8560b17210195e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/openactive/models-php/zipball/6ab0cd76f1fc58c44c4344feda8560b17210195e",
+                "reference": "6ab0cd76f1fc58c44c4344feda8560b17210195e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OpenActive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2019-10-30T11:16:26+00:00"
         },
         {
             "name": "opis/closure",
