@@ -15,8 +15,8 @@ class DatasetController extends Controller
         );
 
         $settings = array(
-            "openDataFeedBaseUrl" => "https://sw-oa-test-site.herokuapp.com/feed/",
-            "datasetSiteUrl" => "https://sw-oa-test-site.herokuapp.com",
+            "openDataFeedBaseUrl" => url("/")."/feed/",
+            "datasetSiteUrl" => url("/"),
             "datasetDiscussionUrl" => "https://github.com/simpleweb/sw-oa-php-test-site",
             "datasetDocumentationUrl" => "https://developer.openactive.io/",
             "datasetLanguages" => array("en-GB"),
