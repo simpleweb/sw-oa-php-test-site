@@ -7,6 +7,7 @@ use OpenActive\Rpde\RpdeBody;
 use OpenActive\Rpde\RpdeItem;
 use OpenActive\Rpde\RpdeKind;
 use OpenActive\Rpde\RpdeState;
+use OpenActive\BaseModel;
 use OpenActive\Models\OA\SessionSeries;
 use OpenActive\Models\OA\Place;
 use OpenActive\Models\OA\GeoCoordinates;
@@ -21,7 +22,7 @@ class FeedSessionSeriesController extends Controller
         $baseUrl = request()->url();
         $changeNumber = (request()->query('afterChangeNumber') ?: 0);
 
-        $pageItems = $this->itemsForPage($changeNumber, 1);
+        $pageItems = $this->itemsForPage($changeNumber, 3);
 
         $page = RpdeBody::createFromNextChangeNumber($baseUrl, $changeNumber, $pageItems);
 
@@ -50,51 +51,21 @@ class FeedSessionSeriesController extends Controller
     }
 
     private function allItems() {
-        $sessionSeries = new SessionSeries([
-            "name" => "Virtual BODYPUMP",
-            "description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast",
-            "startDate" => "2017-04-24T19:30:00-08:00",
-            "endDate" => "2017-04-24T23:00:00-08:00",
-            "location" => new Place([
-                "name" => "Raynes Park High School, 46A West Barnes Lane",
-                "geo" => new GeoCoordinates([
-                    "latitude" => 51.4034423828125,
-                    "longitude" => -0.2369088977575302,
-                ])
-            ]),
-            "activity" => new Concept([
-                "id" => "https://openactive.io/activity-list#5e78bcbe-36db-425a-9064-bf96d09cc351",
-                "prefLabel" => "Bodypump™",
-                "inScheme" => "https://openactive.io/activity-list"
-            ]),
-            "organizer" => new Organization([
-                "name" => "Central Speedball Association",
-                "url" => "http://www.speedball-world.com"
-            ]),
-            "offers" => [new Offer([
-                "identifier" => "OX-AD",
-                "name" => "Adult",
-                "price" => 3.3,
-                "priceCurrency" => "GBP",
-                "url" => "https://profile.everyoneactive.com/booking?Site=0140&Activities=1402CBP20150217&Culture=en-GB"
-            ])],
-        ]);
+        $strJsonFileContents = file_get_contents(__DIR__ ."/../../../session-series-feed-items.json");
+        $rawItems = json_decode($strJsonFileContents, true);
 
-        $items = [
-            new RpdeItem([
-                "Id" => "2",
-                "Modified" => 4,
-                "State" => RpdeState::UPDATED,
-                "Kind" => RpdeKind::SESSION_SERIES,
-                "Data" => $sessionSeries,
-            ]),
-            new RpdeItem([
-                "Id" => "1",
-                "Modified" => 5,
-                "State" => RpdeState::DELETED,
-                "Kind" => RpdeKind::SESSION_SERIES,
-            ])
-        ];
+        $items = array_map(function($item) {
+            $args = [
+                "Id" => $item["id"],
+                "State" => $item["status"],
+                "Kind" => $item["kind"],
+                "Modified" => $item["modified"],
+            ];
+            if ($args["State"] == "updated") {
+                $args["Data"] = SessionSeries::deserialize(json_encode($item["data"]));
+            }
+            return new RpdeItem($args);
+        }, $rawItems);
 
         return $items;
     }
