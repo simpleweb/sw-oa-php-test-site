@@ -18,7 +18,15 @@ def generate_session_series(id)
     location: {
       type: "Place",
       id: "https://openactive.io/place###{Faker::Alphanumeric.alpha(number: 10)}",
-
+      name: Faker::Company.name,
+      address: {
+        type: "PostalAddress",
+        streetAddress: Faker::Address.street_address,
+        addressLocality: Faker::Address.street_name,
+        addressRegion: Faker::Address.city,
+        postalCode: Faker::Address.postcode,
+        addressCountry: Faker::Address.country_code,
+      }
     },
     activity: [
       {
@@ -27,7 +35,15 @@ def generate_session_series(id)
         inScheme: "https://openactive.io/activity-list",
         prefLabel: Faker::Esport.game,
       }
-    ]
+    ],
+    organizer: {
+      type: "Organization",
+    },
+    offers: [
+      {
+        type: "beta:IndicativeOffer",
+      }
+    ],
   }
 end
 
