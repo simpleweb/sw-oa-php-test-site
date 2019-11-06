@@ -18,6 +18,38 @@ class FeedSessionSeriesController extends Controller
 {
     public function show()
     {
+        $baseUrl = request()->url();
+        $changeNumber = (request()->query('afterChangeNumber') ?: 0);
+
+        $pageItems = $this->itemsForPage($changeNumber, 1);
+
+        $page = RpdeBody::createFromNextChangeNumber($baseUrl, $changeNumber, $pageItems);
+
+        return response(RpdeBody::serialize($page))
+            ->header('Content-Type', 'application/json');
+    }
+
+    private function itemsForPage($changeNumber, $limit) {
+        $pageItems = $this->allItems();
+        // filter out items which are too old
+        $pageItems = array_filter($pageItems, function($item) use ($changeNumber) { return $item->getModified() > $changeNumber; });
+        // sort items by modified ASC, id ASC
+        usort($pageItems, function($item1, $item2) {
+            if($item1->getModified() == $item2->getModified() && $item1->getId() == $item2.getId()) {
+                return 0;
+            } elseif($item1->getModified() == $item2->getModified()) {
+                return $item1->getId() < $item2.getId() ? -1 : 1;
+            } else {
+                return $item1->getModified() < $item2->getModified() ? -1 : 1;
+            }
+        });
+        // limit number of items per page
+        $pageItems = array_slice($pageItems, 0, $limit);
+
+        return $pageItems;
+    }
+
+    private function allItems() {
         $sessionSeries = new SessionSeries([
             "name" => "Virtual BODYPUMP",
             "description" => "This is the virtual version of the original barbell class, which will help you get lean, toned and fit - fast",
@@ -63,11 +95,7 @@ class FeedSessionSeriesController extends Controller
                 "Kind" => RpdeKind::SESSION_SERIES,
             ])
         ];
-        $baseUrl = request()->url();
-        $changeNumber = request()->query('changeNumber');
-        $page = RpdeBody::createFromNextChangeNumber($baseUrl, $changeNumber, $items);
 
-        return response(RpdeBody::serialize($page))
-            ->header('Content-Type', 'application/json');
+        return $items;
     }
 }
