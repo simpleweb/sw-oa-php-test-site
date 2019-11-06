@@ -9,15 +9,15 @@ def generate_session_series(id)
       "https://openactive.io/ns-beta"
     ],
     type: FEED_KIND,
-    id: "https://openactive.io/session-series##{id}",
-    url: "https://openactive.io/session-series##{id}",
+    id: "https://example.com/session-series##{id}",
+    url: "https://example.com/session-series##{id}",
     name: Faker::Company.industry,
     startDate: Faker::Time.between(from: Time.mktime(2019,12,6), to: Time.mktime(2019,12,7)).iso8601,
     endDate: Faker::Time.between(from: Time.mktime(2019,12,7), to: Time.mktime(2019,12,8)).iso8601,
     duration: "PT1H30M",
     location: {
       type: "Place",
-      id: "https://openactive.io/place###{Faker::Alphanumeric.alpha(number: 10)}",
+      id: "https://example.com/place###{Faker::Alphanumeric.alpha(number: 10)}",
       name: Faker::Company.name,
       address: {
         type: "PostalAddress",
@@ -31,18 +31,42 @@ def generate_session_series(id)
     activity: [
       {
         type: "Concept",
-        id: "https://openactive.io/activity-list##{Faker::Alphanumeric.alpha(number: 10)}",
+        id: "https://example.com/activity-list##{Faker::Alphanumeric.alpha(number: 10)}",
         inScheme: "https://openactive.io/activity-list",
         prefLabel: Faker::Esport.game,
-      }
+      },
+    ],
+    eventSchedule: [
+      {
+        type: "PartialSchedule",
+        repeatFrequency: "P7D",
+        startTime: "20:15:00",
+        endTime: "20:45:00",
+        byDay: [
+          "http://schema.org/Monday",
+          "http://schema.org/Wednesday",
+          "http://schema.org/Friday",
+        ],
+      },
     ],
     organizer: {
       type: "Organization",
+      id: "https://example.com/organization##{Faker::Alphanumeric.alpha(number: 10)}",
+      name: Faker::Company.name,
     },
     offers: [
       {
-        type: "beta:IndicativeOffer",
-      }
+        type: "Offer",
+        id: "https://example.com/offer##{Faker::Alphanumeric.alpha(number: 10)}",
+        price: Faker::Number.between(from: 1, to: 100),
+        price_currency: Faker::Currency.code,
+      },
+      {
+        type: "Offer",
+        id: "https://example.com/offer##{Faker::Alphanumeric.alpha(number: 10)}",
+        price: Faker::Number.between(from: 200, to: 500),
+        price_currency: Faker::Currency.code,
+      },
     ],
   }
 end
