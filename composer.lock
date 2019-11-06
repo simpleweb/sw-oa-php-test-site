@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e64dad62818d2cf2bbeb3db65c6887b5",
+    "content-hash": "4de9257b3addd467abee2c7ab5c6203e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -470,16 +470,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.4.1",
+            "version": "v6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ebd8fcc038effa8c5f8791346c48047f7d0ed320"
+                "reference": "6d120a21ef0c69630e92dec67932ef434c746019"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ebd8fcc038effa8c5f8791346c48047f7d0ed320",
-                "reference": "ebd8fcc038effa8c5f8791346c48047f7d0ed320",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6d120a21ef0c69630e92dec67932ef434c746019",
+                "reference": "6d120a21ef0c69630e92dec67932ef434c746019",
                 "shasum": ""
             },
             "require": {
@@ -612,7 +612,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-29T14:30:39+00:00"
+            "time": "2019-11-05T14:32:58+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1009,16 +1009,16 @@
         },
         {
             "name": "openactive/dataset-site",
-            "version": "v0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/dataset-site-template-php.git",
-                "reference": "5c89133f24615564bf31aea4158986c9d795f9da"
+                "reference": "4eb461efede430ea6aab461b4029ffc386191cbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/5c89133f24615564bf31aea4158986c9d795f9da",
-                "reference": "5c89133f24615564bf31aea4158986c9d795f9da",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/4eb461efede430ea6aab461b4029ffc386191cbe",
+                "reference": "4eb461efede430ea6aab461b4029ffc386191cbe",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +1038,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-10-30T10:38:48+00:00"
+            "time": "2019-11-06T10:14:41+00:00"
         },
         {
             "name": "openactive/models",
@@ -1046,12 +1046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/models-php.git",
-                "reference": "6ab0cd76f1fc58c44c4344feda8560b17210195e"
+                "reference": "e369e7b84fec12fda3f13c6747bf3a3c596f9643"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/models-php/zipball/6ab0cd76f1fc58c44c4344feda8560b17210195e",
-                "reference": "6ab0cd76f1fc58c44c4344feda8560b17210195e",
+                "url": "https://api.github.com/repos/openactive/models-php/zipball/e369e7b84fec12fda3f13c6747bf3a3c596f9643",
+                "reference": "e369e7b84fec12fda3f13c6747bf3a3c596f9643",
                 "shasum": ""
             },
             "require-dev": {
@@ -1069,7 +1069,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-10-30T11:16:26+00:00"
+            "time": "2019-11-06T09:42:23+00:00"
         },
         {
             "name": "opis/closure",
@@ -4137,16 +4137,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.4.2",
+            "version": "8.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a142a7e66c0ea7b5b6c04ee27f08d10d1137cd9b"
+                "reference": "67f9e35bffc0dd52d55d565ddbe4230454fd6a4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a142a7e66c0ea7b5b6c04ee27f08d10d1137cd9b",
-                "reference": "a142a7e66c0ea7b5b6c04ee27f08d10d1137cd9b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/67f9e35bffc0dd52d55d565ddbe4230454fd6a4e",
+                "reference": "67f9e35bffc0dd52d55d565ddbe4230454fd6a4e",
                 "shasum": ""
             },
             "require": {
@@ -4216,7 +4216,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-10-28T10:39:51+00:00"
+            "time": "2019-11-06T09:42:23+00:00"
         },
         {
             "name": "scrivo/highlight.php",
@@ -4993,7 +4993,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "openactive/dataset-site": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
