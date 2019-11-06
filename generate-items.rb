@@ -12,8 +12,8 @@ def generate_session_series(id)
     id: "https://openactive.io/session-series##{id}",
     url: "https://openactive.io/session-series##{id}",
     name: Faker::Company.industry,
-    # startDate: Faker::Time.between(from: Time.mktime(2019,12,6), to: Time.mktime(2019,12,7)),
-    # endDate: Faker::Time.between(from: Time.mktime(2019,12,7), to: Time.mktime(2019,12,8)),
+    startDate: Faker::Time.between(from: Time.mktime(2019,12,6), to: Time.mktime(2019,12,7)).iso8601,
+    endDate: Faker::Time.between(from: Time.mktime(2019,12,7), to: Time.mktime(2019,12,8)).iso8601,
     duration: "PT1H30M",
     location: {
       type: "Place",
@@ -28,7 +28,6 @@ def generate_session_series(id)
         prefLabel: Faker::Esport.game,
       }
     ]
-
   }
 end
 
