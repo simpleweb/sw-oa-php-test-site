@@ -21,8 +21,9 @@ class FeedSessionSeriesController extends Controller
     {
         $baseUrl = request()->url();
         $changeNumber = (request()->query('afterChangeNumber') ?: 0);
+        $perPage = 3;
 
-        $pageItems = $this->itemsForPage($changeNumber, 3);
+        $pageItems = $this->itemsForPage($changeNumber, $perPage);
 
         $page = RpdeBody::createFromNextChangeNumber($baseUrl, $changeNumber, $pageItems);
 
