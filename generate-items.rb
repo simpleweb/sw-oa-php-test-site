@@ -43,9 +43,9 @@ def generate_session_series(id)
         startTime: "20:15:00",
         endTime: "20:45:00",
         byDay: [
-          "http://schema.org/Monday",
-          "http://schema.org/Wednesday",
-          "http://schema.org/Friday",
+          "https://schema.org/Monday",
+          "https://schema.org/Wednesday",
+          "https://schema.org/Friday",
         ],
       },
     ],
