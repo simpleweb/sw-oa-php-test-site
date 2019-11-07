@@ -23,26 +23,59 @@ class FeedSessionSeriesController extends Controller
         $changeNumber = (request()->query('afterChangeNumber') ?: 0);
         $perPage = 3;
 
-        $pageItems = $this->itemsForPage($changeNumber, $perPage);
+        // get "raw" data (i.e. not OA classes) from "database"
+        $pageItemsData = $this->dataForPage($changeNumber, $perPage);
 
+        // convert data on raw items into OA models
+        $pageItemsData = array_map(function($rawItem) {
+            if(array_key_exists("data", $rawItem)) {
+                // in this case item's data is already is format ready to deserialized into a SessionSeries object
+                $rawItem["data"] = SessionSeries::deserialize(json_encode($rawItem["data"]));
+            }
+            return $rawItem;
+        }, $pageItemsData);
+
+        // convert raw items into RPDE items
+        $pageItems = array_map(function($rawItem) {
+            if($rawItem["state"] == "updated") {
+                // in this case item's data is already is format ready to deserialized into a SessionSeries object
+                $rawItem["data"] = SessionSeries::deserialize(json_encode($rawItem["data"]));
+            }
+
+            $args = [
+                "Id" => $rawItem["id"],
+                "State" => $rawItem["state"],
+                "Kind" => $rawItem["kind"],
+                "Modified" => $rawItem["modified"],
+            ];
+            if (array_key_exists("data", $args)) {
+                $args["Data"] = $rawItem["data"];
+            }
+            // and similarly
+            return new RpdeItem($args);
+        }, $pageItemsData);
+
+        // create an RPDE page
         $page = RpdeBody::createFromNextChangeNumber($baseUrl, $changeNumber, $pageItems);
 
+        // return RPDE page serialized as JSON
         return response(RpdeBody::serialize($page))
             ->header('Content-Type', 'application/json');
     }
 
-    private function itemsForPage($changeNumber, $limit) {
-        $pageItems = $this->allItems();
+    private function dataForPage($changeNumber, $limit) {
+        // get all items from the "database" - aka a JSON file
+        $pageItems = $this->allData();
         // filter out items which are too old
-        $pageItems = array_filter($pageItems, function($item) use ($changeNumber) { return $item->getModified() > $changeNumber; });
+        $pageItems = array_filter($pageItems, function($item) use ($changeNumber) { return $item["modified"] > $changeNumber; });
         // sort items by modified ASC, id ASC
         usort($pageItems, function($item1, $item2) {
-            if($item1->getModified() == $item2->getModified() && $item1->getId() == $item2.getId()) {
+            if($item1["modified"] == $item2["modified"] && $item1["id"] == $item2["id"]) {
                 return 0;
-            } elseif($item1->getModified() == $item2->getModified()) {
-                return $item1->getId() < $item2.getId() ? -1 : 1;
+            } elseif($item1["modified"] == $item2["modified"]) {
+                return $item1-["id"] < $item2["id"] ? -1 : 1;
             } else {
-                return $item1->getModified() < $item2->getModified() ? -1 : 1;
+                return $item1["modified"] < $item2["modified"] ? -1 : 1;
             }
         });
         // limit number of items per page
@@ -51,23 +84,8 @@ class FeedSessionSeriesController extends Controller
         return $pageItems;
     }
 
-    private function allItems() {
+    private function allData() {
         $strJsonFileContents = file_get_contents(__DIR__ ."/../../../session-series-feed-items.json");
-        $rawItems = json_decode($strJsonFileContents, true);
-
-        $items = array_map(function($item) {
-            $args = [
-                "Id" => $item["id"],
-                "State" => $item["status"],
-                "Kind" => $item["kind"],
-                "Modified" => $item["modified"],
-            ];
-            if ($args["State"] == "updated") {
-                $args["Data"] = SessionSeries::deserialize(json_encode($item["data"]));
-            }
-            return new RpdeItem($args);
-        }, $rawItems);
-
-        return $items;
+        return json_decode($strJsonFileContents, true);
     }
 }
