@@ -1042,16 +1042,16 @@
         },
         {
             "name": "openactive/models",
-            "version": "dev-validate-times",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/models-php.git",
-                "reference": "02a46b339baf7e1c84ad8033cc2f6e88620b48f6"
+                "reference": "ce2612d250cff5de7b0357bdd064a97b3549156f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/models-php/zipball/02a46b339baf7e1c84ad8033cc2f6e88620b48f6",
-                "reference": "02a46b339baf7e1c84ad8033cc2f6e88620b48f6",
+                "url": "https://api.github.com/repos/openactive/models-php/zipball/ce2612d250cff5de7b0357bdd064a97b3549156f",
+                "reference": "ce2612d250cff5de7b0357bdd064a97b3549156f",
                 "shasum": ""
             },
             "require-dev": {
@@ -1069,7 +1069,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-11-06T17:11:06+00:00"
+            "time": "2019-11-07T09:47:28+00:00"
         },
         {
             "name": "opis/closure",
