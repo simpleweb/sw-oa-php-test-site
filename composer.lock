@@ -1013,17 +1013,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/dataset-site-template-php.git",
-                "reference": "14b542db8178d40521489c85d5eff0fce7fb705e"
+                "reference": "43978e19481db2581e628d39efa0fe792bbbfed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/14b542db8178d40521489c85d5eff0fce7fb705e",
-                "reference": "14b542db8178d40521489c85d5eff0fce7fb705e",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/43978e19481db2581e628d39efa0fe792bbbfed9",
+                "reference": "43978e19481db2581e628d39efa0fe792bbbfed9",
                 "shasum": ""
             },
             "require": {
                 "mustache/mustache": "^2.12",
-                "openactive/models": "dev-validate-times"
+                "openactive/models": "dev-master"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8"
