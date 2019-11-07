@@ -82,9 +82,9 @@ items = 5.times.map do |i|
 
   # mark 1 in 10 as deleted
   if i % 10 == 2
-    item[:status] = "deleted"
+    item[:state] = "deleted"
   else
-    item[:status] = "updated"
+    item[:state] = "updated"
     item[:data] = generate_session_series(id)
   end
 
