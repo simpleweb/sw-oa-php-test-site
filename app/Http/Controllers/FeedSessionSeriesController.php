@@ -43,7 +43,7 @@ class FeedSessionSeriesController extends Controller
                 "Kind" => $rawItem["kind"],
                 "Modified" => $rawItem["modified"],
             ];
-            if (array_key_exists("data", $rawItem)) {
+            if ($args["State"] === "updated") {
                 $args["Data"] = $rawItem["data"];
             }
             // and similarly
