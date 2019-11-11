@@ -37,18 +37,13 @@ class FeedSessionSeriesController extends Controller
 
         // convert raw items into RPDE items
         $pageItems = array_map(function($rawItem) {
-            if($rawItem["state"] == "updated") {
-                // in this case item's data is already is format ready to deserialized into a SessionSeries object
-                $rawItem["data"] = SessionSeries::deserialize(json_encode($rawItem["data"]));
-            }
-
             $args = [
                 "Id" => $rawItem["id"],
                 "State" => $rawItem["state"],
                 "Kind" => $rawItem["kind"],
                 "Modified" => $rawItem["modified"],
             ];
-            if (array_key_exists("data", $args)) {
+            if (array_key_exists("data", $rawItem)) {
                 $args["Data"] = $rawItem["data"];
             }
             // and similarly
