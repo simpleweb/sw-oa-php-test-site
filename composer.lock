@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4de9257b3addd467abee2c7ab5c6203e",
+    "content-hash": "7889bd06d9afe5f0812c0cc92ed9558a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1013,12 +1013,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/dataset-site-template-php.git",
-                "reference": "43978e19481db2581e628d39efa0fe792bbbfed9"
+                "reference": "7635e6ecc3afe7dcebfdb39df781c02b7beccc28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/43978e19481db2581e628d39efa0fe792bbbfed9",
-                "reference": "43978e19481db2581e628d39efa0fe792bbbfed9",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/7635e6ecc3afe7dcebfdb39df781c02b7beccc28",
+                "reference": "7635e6ecc3afe7dcebfdb39df781c02b7beccc28",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +1038,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-11-06T11:53:33+00:00"
+            "time": "2019-11-28T13:54:35+00:00"
         },
         {
             "name": "openactive/models",
@@ -1046,12 +1046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/models-php.git",
-                "reference": "b154d3ce24ffc4b7ce4bb9c36bdbbca0e4467b63"
+                "reference": "6f1d787c213eddd07e6e18b95e51915881cb1ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/models-php/zipball/b154d3ce24ffc4b7ce4bb9c36bdbbca0e4467b63",
-                "reference": "b154d3ce24ffc4b7ce4bb9c36bdbbca0e4467b63",
+                "url": "https://api.github.com/repos/openactive/models-php/zipball/6f1d787c213eddd07e6e18b95e51915881cb1ddc",
+                "reference": "6f1d787c213eddd07e6e18b95e51915881cb1ddc",
                 "shasum": ""
             },
             "require-dev": {
@@ -1069,7 +1069,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-11-07T13:22:45+00:00"
+            "time": "2019-11-27T14:58:02+00:00"
         },
         {
             "name": "opis/closure",
@@ -4994,7 +4994,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "openactive/dataset-site": 20
+        "openactive/dataset-site": 20,
+        "openactive/models": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
