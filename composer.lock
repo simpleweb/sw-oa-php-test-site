@@ -1013,12 +1013,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/dataset-site-template-php.git",
-                "reference": "7635e6ecc3afe7dcebfdb39df781c02b7beccc28"
+                "reference": "030fccb721681fe978145dca1004961b540c5423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/7635e6ecc3afe7dcebfdb39df781c02b7beccc28",
-                "reference": "7635e6ecc3afe7dcebfdb39df781c02b7beccc28",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/030fccb721681fe978145dca1004961b540c5423",
+                "reference": "030fccb721681fe978145dca1004961b540c5423",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +1038,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-11-28T13:54:35+00:00"
+            "time": "2019-12-02T16:05:48+00:00"
         },
         {
             "name": "openactive/models",
