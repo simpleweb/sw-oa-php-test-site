@@ -7,11 +7,11 @@ use OpenActive\Rpde\RpdeBody;
 use OpenActive\Rpde\RpdeItem;
 use OpenActive\Rpde\RpdeKind;
 use OpenActive\Rpde\RpdeState;
-use OpenActive\BaseModel;
 use OpenActive\Models\OA\SessionSeries;
+use OpenActive\Models\OA\PostalAddress;
 use OpenActive\Models\OA\Place;
-use OpenActive\Models\OA\GeoCoordinates;
 use OpenActive\Models\OA\Concept;
+use OpenActive\Models\OA\PartialSchedule;
 use OpenActive\Models\OA\Organization;
 use OpenActive\Models\OA\Offer;
 
@@ -30,7 +30,7 @@ class FeedSessionSeriesController extends Controller
         $pageItemsData = array_map(function($rawItem) {
             if(array_key_exists("data", $rawItem)) {
                 // in this case item's data is already is format ready to deserialized into a SessionSeries object
-                $rawItem["data"] = SessionSeries::deserialize(json_encode($rawItem["data"]));
+                $rawItem["data"] =$this->buildSessionSeries($rawItem["data"]);
             }
             return $rawItem;
         }, $pageItemsData);
@@ -56,6 +56,58 @@ class FeedSessionSeriesController extends Controller
         // return RPDE page serialized as JSON
         return response(RpdeBody::serialize($page))
             ->header('Content-Type', 'application/json');
+    }
+
+    private function buildSessionSeries($data) {
+        $address = new PostalAddress([
+            "streetAddress" => $data['location']['address']['streetAddress'],
+            "addressLocality" => $data['location']['address']['addressLocality'],
+            "addressRegion" => $data['location']['address']['addressRegion'],
+            "postalCode" => $data['location']['address']['postalCode'],
+            "addressCountry" => $data['location']['address']['addressCountry'],
+        ]);
+        $location = new Place([
+            "id" => $data["location"]["id"],
+            "name" => $data["location"]["name"],
+            "address" => $address,
+        ]);
+        $activities = array_map(function($activityData) {
+            return new Concept([
+                "id" => $activityData["id"],
+                "inScheme" => $activityData["inScheme"],
+                "prefLabel" => $activityData["prefLabel"],
+            ]);
+        }, $data['activity']);
+        $eventSchedule = array_map(function($eventScheduleData) {
+            return new PartialSchedule([
+                "repeatFrequency" => $eventScheduleData['repeatFrequency'],
+                "startTime" => $eventScheduleData['startTime'],
+                "endTime" => $eventScheduleData['endTime'],
+                "byDay" => $eventScheduleData['byDay']
+            ]);
+        }, $data['eventSchedule']);
+        $organizer = new Organization([
+            "id" => $data['organizer']['id'],
+            "name" => $data['organizer']['name'],
+        ]);
+        $offers = array_map(function($offerData) {
+            return new Offer([
+                "id" => $offerData['id'],
+                "price" => $offerData['price'],
+                "price_currency" => $offerData['price_currency'],
+            ]);
+        }, $data['offers']);
+        return new SessionSeries([
+            "name" => $data['name'],
+            "startDate" => $data['startDate'],
+            "endDate" => $data['endDate'],
+            "duration" => $data['duration'],
+            "location" => $location,
+            "activity" => $activities,
+            "eventSchedule" => $eventSchedule,
+            "organizer" => $organizer,
+            "offers" => $offers,
+        ]);
     }
 
     private function dataForPage($changeNumber, $limit) {
