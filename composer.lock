@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7889bd06d9afe5f0812c0cc92ed9558a",
+    "content-hash": "2704961bb84d22e87e30fba6ca1cfea1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1009,21 +1009,21 @@
         },
         {
             "name": "openactive/dataset-site",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/dataset-site-template-php.git",
-                "reference": "030fccb721681fe978145dca1004961b540c5423"
+                "reference": "0d5e05c46efac7a00aae4ff565fd01707a504182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/030fccb721681fe978145dca1004961b540c5423",
-                "reference": "030fccb721681fe978145dca1004961b540c5423",
+                "url": "https://api.github.com/repos/openactive/dataset-site-template-php/zipball/0d5e05c46efac7a00aae4ff565fd01707a504182",
+                "reference": "0d5e05c46efac7a00aae4ff565fd01707a504182",
                 "shasum": ""
             },
             "require": {
                 "mustache/mustache": "^2.12",
-                "openactive/models": "dev-master"
+                "openactive/models": "^0.4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8"
@@ -1038,11 +1038,11 @@
             "license": [
                 "MIT"
             ],
-            "time": "2019-12-02T16:05:48+00:00"
+            "time": "2019-12-06T15:36:45+00:00"
         },
         {
             "name": "openactive/models",
-            "version": "dev-master",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/openactive/models-php.git",
@@ -4993,10 +4993,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "openactive/dataset-site": 20,
-        "openactive/models": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
